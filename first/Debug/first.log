@@ -1,0 +1,5 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(519,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (first.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  main.cpp
+  second.cpp
+  Generating Code...
+  first.vcxproj -> D:\projects\advent_of_code_2022\advent_of_code_2022\Debug\advent.exe
