@@ -10,7 +10,8 @@ int main()
     FirstPartOne();
     FirstPartTwo();
 
-    SecondPartOne();
+    //SecondPartOne();
+    SecondPartTwo();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

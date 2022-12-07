@@ -63,6 +63,51 @@ int CalculateScoreBasedOnMyChoice(const std::string& myChoice) {
 		return 3;
 }
 
+// A/X: Rock
+// B/Y: Paper
+// C/Z: Scissor
+// --------------------------
+// A Beats C -> X Beats C --> B beats X
+// B Beats A -> Y Beats A --> C beats Y
+// C Beats B -> Z Beats B --> A beats Z
+int CalculateScoreBasedOnRoundIndication(const std::string& opponentChoice, const std::string& indication) {
+	int score = 3;
+	int signScore = 0;
+	int scoreMultiplier = 0;
+
+	// Win:
+	if (indication == "Z") {
+		if (opponentChoice == "A")
+			signScore = 2;
+		if (opponentChoice == "B")
+			signScore = 3;
+		if (opponentChoice == "C")
+			signScore = 1;
+		scoreMultiplier = 2;
+	}
+	// Draw:
+	if (indication == "Y") {
+		if (opponentChoice == "A")
+			signScore = 1;
+		if (opponentChoice == "B")
+			signScore = 2;
+		if (opponentChoice == "C")
+			signScore = 3;
+		scoreMultiplier = 1;
+	}
+	// Lose:
+	if (indication == "X") {
+		if (opponentChoice == "A")
+			signScore = 3;
+		if (opponentChoice == "B")
+			signScore = 1;
+		if (opponentChoice == "C")
+			signScore = 2;
+	}
+
+	return (score * scoreMultiplier) + signScore;
+}
+
 void SecondPartOne() {
 	std::string rpcInput;
 	std::ifstream inputFile("../inputs/2.txt");
@@ -73,7 +118,23 @@ void SecondPartOne() {
 		totalScore += CalculateScoreBasedOnMyChoice(lineChoices[1]);
 		totalScore += CalculateScoreBasedOnRoundOutCome(lineChoices[0], lineChoices[1]);
 	}
+	std::ostringstream oss;
+	oss << "Part One:" << totalScore;
+	std::cout << oss.str() << std::endl;
 
-	std::cout << totalScore << std::endl;
+}
 
+void SecondPartTwo() {
+	std::string rpcInput;
+	std::ifstream inputFile("../inputs/2.txt");
+	int totalScore = 0;
+
+	while (std::getline(inputFile, rpcInput)) {
+		auto lineChoices = SplitLineIntoChoices(rpcInput);
+		totalScore += CalculateScoreBasedOnRoundIndication(lineChoices[0], lineChoices[1]);
+	}
+
+	std::ostringstream oss;
+	oss << "Part Two:" << totalScore;
+	std::cout << oss.str() << std::endl;
 }
